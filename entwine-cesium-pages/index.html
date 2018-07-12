@@ -156,9 +156,22 @@
             viewer.camera.setView({ destination: dest });
 
             $.getJSON(url+'/sites.json', function(data) {
-                for (var k in data) {
-                    console.log(k.position);
-                }
+                data.forEach(function (k){
+                    var pinBuilder = new Cesium.PinBuilder();
+ 
+                    var bluePin = viewer.entities.add({
+                        position : Cesium.Cartesian3.fromDegrees(k.position[0], k.position[1], k.position[2]),
+                        billboard : {
+                            image : pinBuilder.fromColor(Cesium.Color.ROYALBLUE, 48).toDataURL(),
+                            verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+                        },
+
+                        label: {
+                            id: k.label.id,
+                            text: k.label.text
+                        }
+                    });
+                });
             });
         });
     }
