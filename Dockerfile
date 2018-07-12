@@ -15,7 +15,7 @@ RUN cd /tmp && \
 ADD pipeline.py /usr/local/bin/pipeline.py
 RUN chmod +x /usr/local/bin/pipeline.py
 
-ADD ecp.tar.gz /opt/
+ADD entwine-cesium-pages /opt/entwine-cesium-pages/
 
 WORKDIR /tmp
 
